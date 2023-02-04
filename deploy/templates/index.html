@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>TITLE</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<style>
+.back{
+ background-image: url("{{ url_for('static', filename='image/img.jpg') }}");
+ background-repeat: no-repeat;
+ background-attachment: fixed;
+ background-size: 100% 100%;
+}
+.white{
+color:white;
+}
+.space{
+margin:10px 30px;
+padding:10px 10px;
+background: palegreen;
+width:500px
+}
+.gap{
+padding:10px 20px;
+}
+</style>
+  
+</head>
+
+<body class="back">
+ <div>
+	<div class="jumbotron">
+	<h1 style="text-align:center">PREDICTION OF PHISHING NETWORK</h1>
+	
+	</div>
+     <!-- Main Input For Receiving Query to our ML -->
+    <form class="form-group" action="{{ url_for('predict')}}"method="post">
+    		
+		<div class="row">
+		<div class="gap col-md-6 ">
+
+		<label class="white"  for="">SFH</label>
+		<input type="number" class="space form-control" step="0.01" name="SFH" placeholder="SFH" required="required" /><br>
+		
+		
+
+		<label class="white" for="">POPUPWINDOW</label>
+		<input type="number" class="space form-control" step="0.01" name="POPUPWINDOW" placeholder="POPUPWINDOW" required="required" /><br>
+
+		<label class="white" for="">SSLFINAL_STATE</label>
+		<input type="number" class="space form-control" step="0.01" name="SSLFINAL_STATE" placeholder="SSLFINAL_STATE" required="required" /><br>
+
+		<label class="white"  for="">REQUEST_URL</label>
+		<input type="number" class="space form-control" step="0.01" name="REQUEST_URL" placeholder="REQUEST_URL" required="required" /><br>
+
+		<label class="white"  for="">URL_OF_ANCHOR</label>
+		<input type="number" class="space form-control" step="0.01" name="URL_OF_ANCHOR" placeholder="URL_OF_ANCHOR" required="required" /><br>
+	</div>
+		
+
+
+
+<div class="gap col-md-6">
+		
+		<label class="white"  for="">WEB_TRAFFIC</label>
+		<input type="number" class="space form-control" step="0.01" name="WEB_TRAFFIC" placeholder="WEB_TRAFFIC" required="required" /><br>
+
+		<label class="white"  for="">URL_LENGTH</label>
+		<input type="number" class="space form-control" step="0.01" name="URL_LENGTH" placeholder="URL_LENGTH" required="required" /><br>
+		
+		<label class="white"  for="">AGE_OF_DOMAIN</label>
+		<input type="number" class="space form-control" step="0.01" name="AGE_OF_DOMAIN" placeholder="AGE_OF_DOMAIN" required="required" /><br>
+
+		<label class="white"  for="">HAVING_IP_ADDRESS</label>
+		<input type="number" class="space form-control" step="0.01" name="HAVING_IP_ADDRESS" placeholder="HAVING_IP_ADDRESS" required="required" /><br>
+
+</div>
+</div>
+
+<div style="padding:2% 35%">
+  <button type="submit" class="btn btn-success btn-block" style="width:350px;padding:20px">Predict</button>		
+</div>
+      
+    </form>
+
+   <br>
+   <br>
+<div  style="background:skyblue;padding:2% 40%">
+   {{ prediction_text }}
+</div>
+ </div>
+
+
+</body>
+</html>
